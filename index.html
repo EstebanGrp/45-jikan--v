@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duolingo Clone - Inicio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --duo-green: #58cc02;
+            --duo-green-shadow: #58a700;
+            --duo-blue: #1cb0f6;
+            --duo-blue-shadow: #1899d6;
+            --duo-white: #ffffff;
+            --duo-gray: #3c3c3c;
+            --duo-light-gray: #e5e5e5;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #235390; /* Dark blue background sometimes seen in login */
+            background-image: url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239aa5b1" fill-opacity="0.1"%3E%3Cpath d="M40 40c0-8.8-7.2-16-16-16S8 31.2 8 40s7.2 16 16 16 16-7.2 16-16zm0 0c0 8.8 7.2 16 16 16s16-7.2 16-16-7.2-16-16-16-16 7.2-16 16z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: var(--duo-white);
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            max-width: 980px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .globe-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* CSS Only Duo Owl Placeholder */
+        .owl {
+            width: 200px;
+            height: 200px;
+            background-color: var(--duo-green);
+            border-radius: 50% 50% 45% 45%;
+            position: relative;
+            box-shadow: 0 10px 0 var(--duo-green-shadow);
+            animation: bounce 3s infinite ease-in-out;
+        }
+
+        .owl::before { /* Left Ear */
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--duo-green);
+            border-radius: 50% 50% 0 0;
+            transform: rotate(-15deg);
+        }
+
+        .owl::after { /* Right Ear */
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--duo-green);
+            border-radius: 50% 50% 0 0;
+            transform: rotate(15deg);
+        }
+
+        .owl-eyes {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 60px;
+            left: 40px;
+            width: 120px;
+        }
+
+        .eye {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pupil {
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            position: relative;
+            left: 5px; /* Looking slightly right */
+        }
+
+        .beak {
+            position: absolute;
+            top: 110px;
+            left: 85px;
+            width: 30px;
+            height: 20px;
+            background-color: #ffc107;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 3px 0 #e0a800;
+        }
+
+        .wing-left, .wing-right {
+            position: absolute;
+            top: 100px;
+            width: 40px;
+            height: 70px;
+            background-color: var(--duo-green-shadow);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .wing-left { left: -10px; transform: rotate(10deg); }
+        .wing-right { right: -10px; transform: rotate(-10deg); }
+
+
+        .content {
+            flex: 1;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 350px;
+            padding: 15px 0;
+            margin: 10px auto;
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.1s;
+            letter-spacing: 0.8px;
+            position: relative;
+            top: 0;
+        }
+
+        .btn:active {
+            top: 4px;
+            box-shadow: none !important;
+        }
+
+        .btn-primary {
+            background-color: var(--duo-green);
+            color: white;
+            border: 2px solid transparent; /* Keeps sizing consistent */
+            box-shadow: 0 4px 0 var(--duo-green-shadow);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background-color: #235390;
+            color: var(--duo-blue);
+            border: 2px solid #3c5e88;
+            box-shadow: 0 4px 0 #1b3a5f;
+            background-color: #235390;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2a63ab;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid #4b77a9;
+            box-shadow: 0 4px 0 #1b3a5f;
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .globe-container {
+                margin-bottom: 40px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="globe-container">
+            <!-- Representación CSS del búho de Duolingo -->
+            <div class="owl">
+                <div class="wing-left"></div>
+                <div class="wing-right"></div>
+                <div class="owl-eyes">
+                    <div class="eye"><div class="pupil"></div></div>
+                    <div class="eye"><div class="pupil"></div></div>
+                </div>
+                <div class="beak"></div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <h1>¡La forma gratuita, divertida y efectiva de aprender un idioma!</h1>
+            
+            <a href="#" class="btn btn-primary" onclick="alert('¡Empezamos!')">Empezar ahora</a>
+            <a href="#" class="btn btn-outline" onclick="alert('Inicio de sesión')">Ya tengo una cuenta</a>
+        </div>
+    </div>
+
+</body>
+</html>
