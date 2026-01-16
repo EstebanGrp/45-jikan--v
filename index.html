@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duolingo Clone - Inicio</title>
+    <title>Japonés 45 Horas - Inicio</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,241 +11,339 @@
             --duo-green-shadow: #58a700;
             --duo-blue: #1cb0f6;
             --duo-blue-shadow: #1899d6;
+            --duo-purple: #ce82ff;
+            --duo-purple-shadow: #a568cc;
+            --duo-red: #ff4b4b;
+            --duo-red-shadow: #d43f3f;
+            --duo-yellow: #ffc800;
+            --duo-yellow-shadow: #e5b400;
             --duo-white: #ffffff;
             --duo-gray: #3c3c3c;
             --duo-light-gray: #e5e5e5;
+            --bg-color: #ffffff;
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Nunito', sans-serif;
-            background-color: #235390; /* Dark blue background sometimes seen in login */
-            background-image: url('data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239aa5b1" fill-opacity="0.1"%3E%3Cpath d="M40 40c0-8.8-7.2-16-16-16S8 31.2 8 40s7.2 16 16 16 16-7.2 16-16zm0 0c0 8.8 7.2 16 16 16s16-7.2 16-16-7.2-16-16-16-16 7.2-16 16z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: var(--duo-white);
-            overflow: hidden;
+            background-color: var(--bg-color);
+            color: var(--duo-gray);
         }
 
-        .container {
+        /* Header */
+        header {
+            background-color: #fff;
+            border-bottom: 2px solid #e5e5e5;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            max-width: 980px;
+            justify-content: center;
+        }
+
+        .header-content {
             width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--duo-green);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Unit Card Style */
+        .unit-card {
+            border: 2px solid #e5e5e5;
+            border-radius: 16px;
+            overflow: hidden;
+            background: white;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+
+        .unit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .unit-header {
+            padding: 15px 20px;
+            color: white;
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .unit-content {
             padding: 20px;
         }
 
-        .globe-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* CSS Only Duo Owl Placeholder */
-        .owl {
-            width: 200px;
-            height: 200px;
-            background-color: var(--duo-green);
-            border-radius: 50% 50% 45% 45%;
-            position: relative;
-            box-shadow: 0 10px 0 var(--duo-green-shadow);
-            animation: bounce 3s infinite ease-in-out;
-        }
-
-        .owl::before { /* Left Ear */
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 10px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--duo-green);
-            border-radius: 50% 50% 0 0;
-            transform: rotate(-15deg);
-        }
-
-        .owl::after { /* Right Ear */
-            content: '';
-            position: absolute;
-            top: -20px;
-            right: 10px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--duo-green);
-            border-radius: 50% 50% 0 0;
-            transform: rotate(15deg);
-        }
-
-        .owl-eyes {
-            display: flex;
-            justify-content: space-between;
-            position: absolute;
-            top: 60px;
-            left: 40px;
-            width: 120px;
-        }
-
-        .eye {
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border-radius: 50%;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .pupil {
-            width: 20px;
-            height: 20px;
-            background-color: black;
-            border-radius: 50%;
-            position: relative;
-            left: 5px; /* Looking slightly right */
-        }
-
-        .beak {
-            position: absolute;
-            top: 110px;
-            left: 85px;
-            width: 30px;
-            height: 20px;
-            background-color: #ffc107;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            box-shadow: 0 3px 0 #e0a800;
-        }
-
-        .wing-left, .wing-right {
-            position: absolute;
-            top: 100px;
-            width: 40px;
-            height: 70px;
-            background-color: var(--duo-green-shadow);
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .wing-left { left: -10px; transform: rotate(10deg); }
-        .wing-right { right: -10px; transform: rotate(-10deg); }
-
-
-        .content {
-            flex: 1;
-            text-align: center;
-            padding: 40px;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+        .unit-title {
+            font-size: 1.2rem;
             font-weight: 800;
-            line-height: 1.2;
+            margin: 0 0 5px 0;
+            color: var(--duo-gray);
         }
 
+        .unit-desc {
+            color: #777;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Buttons */
         .btn {
-            display: block;
-            width: 100%;
-            max-width: 350px;
-            padding: 15px 0;
-            margin: 10px auto;
+            display: inline-block;
+            padding: 12px 24px;
             font-size: 1rem;
             font-weight: 800;
             text-transform: uppercase;
             text-decoration: none;
-            border-radius: 16px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.1s;
             letter-spacing: 0.8px;
-            position: relative;
-            top: 0;
+            border: none;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .btn:active {
-            top: 4px;
+            transform: translateY(4px);
             box-shadow: none !important;
         }
 
-        .btn-primary {
+        .btn-start {
             background-color: var(--duo-green);
             color: white;
-            border: 2px solid transparent; /* Keeps sizing consistent */
             box-shadow: 0 4px 0 var(--duo-green-shadow);
         }
+        
+        .btn-start:hover { filter: brightness(1.1); }
 
-        .btn-primary:hover {
-            filter: brightness(1.1);
-        }
+        /* Colors for units */
+        .color-green .unit-header { background-color: var(--duo-green); }
+        .color-blue .unit-header { background-color: var(--duo-blue); }
+        .color-purple .unit-header { background-color: var(--duo-purple); }
+        .color-red .unit-header { background-color: var(--duo-red); }
+        .color-yellow .unit-header { background-color: var(--duo-yellow); }
 
-        .btn-secondary {
-            background-color: #235390;
-            color: var(--duo-blue);
-            border: 2px solid #3c5e88;
-            box-shadow: 0 4px 0 #1b3a5f;
-            background-color: #235390;
-        }
-
-        .btn-secondary:hover {
-            background-color: #2a63ab;
+        /* Extra section */
+        .extras-section {
+            margin-top: 40px;
+            border-top: 2px solid #e5e5e5;
+            padding-top: 20px;
         }
         
-        .btn-outline {
-            background-color: transparent;
+        .extras-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--duo-gray);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Floating Owl (Decoración) */
+        .floating-owl {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background-color: var(--duo-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            border: 2px solid #4b77a9;
-            box-shadow: 0 4px 0 #1b3a5f;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 200;
+            transition: transform 0.2s;
         }
-        
-        .btn-outline:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
+        .floating-owl:hover { transform: scale(1.1); }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-            .globe-container {
-                margin-bottom: 40px;
-            }
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="globe-container">
-            <!-- Representación CSS del búho de Duolingo -->
-            <div class="owl">
-                <div class="wing-left"></div>
-                <div class="wing-right"></div>
-                <div class="owl-eyes">
-                    <div class="eye"><div class="pupil"></div></div>
-                    <div class="eye"><div class="pupil"></div></div>
-                </div>
-                <div class="beak"></div>
-            </div>
-        </div>
-        
-        <div class="content">
-            <h1>¡La forma gratuita, divertida y efectiva de aprender un idioma!</h1>
-            
-            <a href="#" class="btn btn-primary" onclick="alert('¡Empezamos!')">Empezar ahora</a>
-            <a href="#" class="btn btn-outline" onclick="alert('Inicio de sesión')">Ya tengo una cuenta</a>
+<header>
+    <div class="header-content">
+        <a href="#" class="logo">Japonés 45H</a>
+    </div>
+</header>
+
+<div class="container">
+    
+    <!-- Lección 4 -->
+    <div class="unit-card color-green">
+        <div class="unit-header">Unidad 1</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Familia y Edad</h3>
+            <p class="unit-desc">家族と年齢</p>
+            <a href="45jikan4kac.html" class="btn btn-start">Lección 4</a>
         </div>
     </div>
+
+    <!-- Lección 5 -->
+    <div class="unit-card color-blue">
+        <div class="unit-header">Unidad 2</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Lugares y Existencia</h3>
+            <p class="unit-desc">場所と あります／います</p>
+            <a href="45jikan5kac.html" class="btn btn-start">Lección 5</a>
+        </div>
+    </div>
+
+    <!-- Lección 6 -->
+    <div class="unit-card color-purple">
+        <div class="unit-header">Unidad 3</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Planes y Transporte</h3>
+            <p class="unit-desc">たんじょうび・来週の予定・来日・交通手段</p>
+            <a href="45jikan6kac.html" class="btn btn-start">Lección 6</a>
+        </div>
+    </div>
+
+    <!-- Lección 7 -->
+    <div class="unit-card color-red">
+        <div class="unit-header">Unidad 4</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Salud y Eventos</h3>
+            <p class="unit-desc">体調・健康・パーティー</p>
+            <a href="45jikan7kac.html" class="btn btn-start">Lección 7</a>
+        </div>
+    </div>
+
+    <!-- Lección 8 -->
+    <div class="unit-card color-yellow">
+        <div class="unit-header">Unidad 5</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Rutina Diaria</h3>
+            <p class="unit-desc">明日の計画・朝のルーティン</p>
+            <a href="45jikan8kac.html" class="btn btn-start">Lección 8</a>
+        </div>
+    </div>
+
+    <!-- Lección 9 -->
+    <div class="unit-card color-green">
+        <div class="unit-header">Unidad 6</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Habilidades y Hobbies</h3>
+            <p class="unit-desc">日本語の能力・趣味・日本料理</p>
+            <a href="45jikan9kac.html" class="btn btn-start">Lección 9</a>
+        </div>
+    </div>
+
+    <!-- Lección 10 -->
+    <div class="unit-card color-blue">
+        <div class="unit-header">Unidad 7</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Ubicación y Direcciones</h3>
+            <p class="unit-desc">辞書・住所・今どこ</p>
+            <a href="45jikan10kac.html" class="btn btn-start">Lección 10</a>
+        </div>
+    </div>
+
+    <!-- Lección 11 -->
+    <div class="unit-card color-purple">
+        <div class="unit-header">Unidad 8</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Deseos y Verano</h3>
+            <p class="unit-desc">カメラの希望・夏休みの計画</p>
+            <a href="45jikan11kac.html" class="btn btn-start">Lección 11</a>
+        </div>
+    </div>
+
+    <!-- Lección 12 -->
+    <div class="unit-card color-red">
+        <div class="unit-header">Unidad 9</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Permisos y Reglas</h3>
+            <p class="unit-desc">許可・ごみ・プレゼント</p>
+            <a href="45jikan12kac.html" class="btn btn-start">Lección 12</a>
+        </div>
+    </div>
+
+    <!-- Lección 13 -->
+    <div class="unit-card color-yellow">
+        <div class="unit-header">Unidad 10</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Comunicación</h3>
+            <p class="unit-desc">電話連絡・約束・パーティー開始</p>
+            <a href="45jikan13kac.html" class="btn btn-start">Lección 13</a>
+        </div>
+    </div>
+
+    <!-- Lección 14 -->
+    <div class="unit-card color-green">
+        <div class="unit-header">Unidad 11</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Comparaciones y Ciudad</h3>
+            <p class="unit-desc">東京比較・交通・日本料理・誘い</p>
+            <a href="45jikan14kac.html" class="btn btn-start">Lección 14</a>
+        </div>
+    </div>
+
+    <!-- Lección 15 -->
+    <div class="unit-card color-blue">
+        <div class="unit-header">Unidad 12</div>
+        <div class="unit-content">
+            <h3 class="unit-title">Opiniones y Despedida</h3>
+            <p class="unit-desc">海・意見・帰国前感想・別れ</p>
+            <a href="45jikan15kac.html" class="btn btn-start">Lección 15</a>
+        </div>
+    </div>
+
+    <div class="extras-section">
+        <h2 class="extras-title">Extras y Prácticas</h2>
+        
+        <div class="unit-card color-yellow">
+            <div class="unit-header">Juego</div>
+            <div class="unit-content">
+                <h3 class="unit-title">Juego Interactivo</h3>
+                <p class="unit-desc">Practica de forma divertida</p>
+                <a href="juego_interactivo.html" class="btn btn-start">Jugar</a>
+            </div>
+        </div>
+
+        <div class="unit-card color-red">
+            <div class="unit-header">Examen</div>
+            <div class="unit-content">
+                <h3 class="unit-title">Prueba de Material</h3>
+                <p class="unit-desc">Prueba tus conocimientos</p>
+                <a href="prueba japones material.html" class="btn btn-start">Entrar</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="floating-owl" title="¡Sigue practicando!">
+    (O_O)
+</div>
 
 </body>
 </html>
